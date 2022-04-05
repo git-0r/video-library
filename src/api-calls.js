@@ -19,7 +19,7 @@ const getVideosByCategory = async (category) => {
     return res.data;
 }
 
-module.exports = {
+export {
     getAllVideos,
     getVideosByCategory
 }
