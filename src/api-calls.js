@@ -1,7 +1,7 @@
 const axios = require("axios");
 
 const BASE_URL = process.env.NODE_ENV === "production"
-    ? "https ://vlib-srver.herokuapp.com/"
+    ? "https://vlib-srver.herokuapp.com/"
     : "http://localhost:3003/";
 
 
