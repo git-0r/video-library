@@ -1,0 +1,10 @@
+.categories-container {
+    padding: 1rem 0;
+    margin: 2rem;
+}
+
+.category {
+    padding: 0.2rem 1rem;
+    border-radius: var(--border-radius-lg);
+    background-color: var(--clr-black-outline);
+}

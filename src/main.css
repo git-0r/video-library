@@ -1,0 +1,30 @@
+@import url("https://component-library2-mriynwwcq-git-0r.vercel.app/css/main.css");
+@import url('https://fonts.googleapis.com/css2?family=ABeeZee&family=Prompt:wght@400;500;600;700&family=Rancho&display=swap');
+
+
+@import "./css/navbar.css";
+@import "./css/video-listing-card.css";
+@import "./css/footer.css";
+@import "./css/home.css";
+
+body {
+    margin: 0;
+    font-family: 'Prompt', sans-serif;
+}
+
+.remove-link-style {
+    text-decoration: none;
+    color: inherit;
+}
+
+.flex-wrap {
+    flex-wrap: wrap;
+}
+
+.flex-dir-column {
+    flex-direction: column;
+}
+
+.gap-1 {
+    gap: 1rem;
+}

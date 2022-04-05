@@ -1,0 +1,5 @@
+footer {
+    font-family: 'Rancho', cursive;
+    background-color: var(--clr-black-disabled);
+    margin-top: 2rem;
+}
