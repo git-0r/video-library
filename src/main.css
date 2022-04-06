@@ -1,11 +1,15 @@
 @import url("https://component-library2-mriynwwcq-git-0r.vercel.app/css/main.css");
-@import url('https://fonts.googleapis.com/css2?family=Prompt:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Prompt:wght@400;500;600;700&family=Rancho&display=swap');
 
 
 @import "./css/navbar.css";
 @import "./css/video-listing-card.css";
 @import "./css/footer.css";
 @import "./css/home.css";
+
+:root {
+    --clr-whitesmoke: rgb(245, 245, 245);
+}
 
 body {
     margin: 0;

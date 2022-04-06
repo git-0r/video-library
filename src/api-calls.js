@@ -13,7 +13,7 @@ const getAllVideos = async () => {
 
 const getVideosByCategory = async (category) => {
 
-    const cat = category.split(" ").join("-");
+    const cat = category.toLowerCase().split(" ").join("-");
 
     const res = await axios.get(`${BASE_URL}videos/${cat}`);
     return res.data;

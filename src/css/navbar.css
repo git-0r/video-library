@@ -5,7 +5,7 @@
     top: 0;
     width: 100%;
     border-bottom: 1px solid var(--clr-black-hover);
-    background-color: whitesmoke;
+    background-color: var(--clr-whitesmoke);
     z-index: var(--z-index-five);
 }
 
@@ -35,7 +35,7 @@
 
 .navbar-search-button {
     padding: 0.5rem 1rem;
-    background-color: white;
+    background-color: var(--clr-white-full);
     cursor: pointer;
     border-radius: var(--border-radius-sm);
     border: 1px solid var(--clr-black-disabled);
@@ -44,7 +44,7 @@
 .nav-drawer {
     padding: 1rem;
     width: fit-content;
-    background-color: whitesmoke;
+    background-color: var(--clr-whitesmoke);
     position: fixed;
     top: 4rem;
     left: 0;

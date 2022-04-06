@@ -23,18 +23,18 @@ const VideoListingCard = ({ video }) => {
                     <p className="video-title">{video ? video.title : "Loading..."}</p>
                     <p className="text-xs view-count">{video ? `${video.views} views` : "Loading..."}</p>
                 </div>
-                <ul className="video-options-list">
+                <div className="video-options-list">
                     <div onClick={toggleVideoOptions}>
                         <ion-icon name="ellipsis-vertical"></ion-icon>
                     </div>
                     {
                         videoOptions &&
-                        <div className="video-options-list-items">
+                        <ul className="video-options-list-items">
                             <li className="video-options-list-item">Add to playlist</li>
                             <li className="video-options-list-item">Watch later</li>
-                        </div>
+                        </ul>
                     }
-                </ul>
+                </div>
             </div>
         </div>
     )

@@ -6,20 +6,22 @@ const Home = () => {
 
     const [videos, setVideos] = useState([]);
     const [category, setCategory] = useState("");
+    const categories = ["All", "The witcher", "Hallo infinite", "Ghost runner", "Dying light", "God of war"];
 
     useEffect(() => {
 
         try {
 
-            category
-                ? (async () => {
-                    const data = await getVideosByCategory(category);
-                    setVideos(data);
-                })()
-                : (async () => {
-                    const data = await getAllVideos()
-                    setVideos(data);
-                })()
+            const getVideoData = async (category) => {
+
+                const data = category !== "All"
+                    ? await getVideosByCategory(category)
+                    : await getAllVideos()
+
+                setVideos(data);
+            }
+
+            getVideoData(category);
 
         } catch (error) {
             console.log(error.message)
@@ -32,45 +34,23 @@ const Home = () => {
             <Navigation />
 
             <div className="categories-container d-flex flex-justify-evenly flex-wrap">
-                <button className={`btn ${category === ""
-                    ? "btn-primary"
-                    : "btn-secondary"}`}
-                    onClick={() => setCategory("")}>
-                    All</button>
-                <button className={`btn ${category === "the witcher"
-                    ? "btn-primary"
-                    : "btn-secondary"}`}
-                    onClick={() => setCategory("the witcher")}>
-                    The witcher</button>
-                <button className={`btn ${category === "halo infinite"
-                    ? "btn-primary"
-                    : "btn-secondary"}`}
-                    onClick={() => setCategory("halo infinite")}>
-                    Hallo infinite</button>
-                <button className={`btn ${category === "ghost runner"
-                    ? "btn-primary"
-                    : "btn-secondary"}`}
-                    onClick={() => setCategory("ghost runner")}>
-                    Ghost runner</button>
-                <button className={`btn ${category === "dying light"
-                    ? "btn-primary"
-                    : "btn-secondary"}`}
-                    onClick={() => setCategory("dying light")}>
-                    Dying light</button>
-                <button className={`btn ${category === "god of war"
-                    ? "btn-primary"
-                    : "btn-secondary"}`}
-                    onClick={() => setCategory("god of war")}>
-                    God of war</button>
+                {
+                    categories?.map(btn => <button key={btn}
+                        className={`btn ${btn === category
+                            ? "btn-primary"
+                            : "btn-secondary"}`}
+                        onClick={() => setCategory(btn)}
+                    >{btn}</button>)
+                }
             </div>
-            <div className="d-flex flex-justify-evenly flex-wrap gap-1">
+            <main className="video-list-wrapper d-flex flex-justify-evenly flex-wrap gap-1">
 
                 {
                     videos.length > 0
                         ? videos?.map(video => <VideoListingCard video={video} key={video._id} />)
                         : "Loading..."
                 }
-            </div>
+            </main>
             <Footer />
 
         </>
