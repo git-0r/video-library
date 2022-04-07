@@ -2,7 +2,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { login } from "../api-calls";
 import { useUser } from "../context/userContext";
-import { useNotification } from "../exports";
+import { useNotification, useWatchLater } from "../exports";
 
 
 const LoginForm = () => {
@@ -11,6 +11,7 @@ const LoginForm = () => {
     const { setUser } = useUser();
     const navigate = useNavigate();
     const { notificationHandler } = useNotification();
+    const { updateWatchLater } = useWatchLater();
 
     const handleFormInput = (e) => {
 
@@ -29,8 +30,9 @@ const LoginForm = () => {
         e.preventDefault();
 
         try {
-            const user = await login(userInput);
+            const { watchLater, ...user } = await login(userInput);
             setUser({ type: "LOGIN", payload: user });
+            updateWatchLater(watchLater);
             notificationHandler("Logged in!");
             navigate("/");
 
@@ -42,8 +44,9 @@ const LoginForm = () => {
     const guestLogin = async () => {
 
         try {
-            const user = await login({ email: "test@email.com", password: "Test@123" });
+            const { watchLater, ...user } = await login({ email: "test@email.com", password: "Test@123" });
             setUser({ type: "LOGIN", payload: user });
+            updateWatchLater(watchLater);
             notificationHandler("Logged in!");
             navigate("/");
         } catch (error) {

@@ -62,7 +62,7 @@
     padding: 0;
     position: absolute;
     right: 50%;
-    min-width: 15ch;
+    min-width: 20ch;
     padding: 0.5rem;
     z-index: var(--z-index-four);
     color: var(--clr-white-full);

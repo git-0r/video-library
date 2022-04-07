@@ -25,6 +25,8 @@ const login = async (data) => {
     const user = res.data;
 
     localStorage.setItem("user", JSON.stringify(user));
+    localStorage.setItem("watchLater", JSON.stringify(user.watchLater));
+
     return user;
 }
 
@@ -37,9 +39,50 @@ const register = async (userData) => {
     return user;
 }
 
+const addToWatchLater = async (id, user) => {
+    const res = await axios.put(
+        `${BASE_URL}/watchlater/add/${user._id}`,
+        { id },
+        {
+            headers: { token: `Bearer ${user.accessToken}` }
+        }
+    );
+    const data = res.data;
+    localStorage.setItem("watchLater", JSON.stringify(data));
+
+    return data;
+}
+
+const removeFromWatchLater = async (id, user) => {
+    const res = await axios.put(
+        `${BASE_URL}/watchlater/remove/${user._id}`,
+        { id },
+        {
+            headers: { token: `Bearer ${user.accessToken}` }
+        }
+    );
+
+    const data = res.data;
+    localStorage.setItem("watchLater", JSON.stringify(data));
+
+    return data;
+}
+
+const getWatchLaterVideos = async (user) => {
+
+    const res = await axios.get(`${BASE_URL}/watchlater/${user._id}`, {
+        headers: { token: `Bearer ${user.accessToken}` }
+    })
+
+    return res.data;
+}
+
 export {
     getAllVideos,
     getVideosByCategory,
     login,
-    register
+    register,
+    addToWatchLater,
+    removeFromWatchLater,
+    getWatchLaterVideos
 }

@@ -1,12 +1,13 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { useNotification, useUser } from "../exports";
+import { useNotification, useUser, useWatchLater } from "../exports";
 
 const Navigation = () => {
 
     const [drawer, setDrawer] = useState(false);
     const { user, setUser } = useUser();
     const { notificationHandler } = useNotification();
+    const { updateWatchLater } = useWatchLater();
 
 
     const toggleDrawer = () => setDrawer(state => !state);
@@ -17,6 +18,7 @@ const Navigation = () => {
 
             localStorage.clear();
             setUser({ type: "LOGOUT" });
+            updateWatchLater();
             notificationHandler("Logged out!")
         } catch (error) {
             notificationHandler(error.message)
@@ -59,10 +61,10 @@ const Navigation = () => {
                         <ion-icon name="play-forward-outline" size="large"></ion-icon>
                         Playlists
                     </div>
-                    <div className="nav-drawer-item d-flex flex-align-center">
+                    <Link to="/watchlater" className="nav-drawer-item remove-link-style d-flex flex-align-center">
                         <ion-icon name="time-outline" size="large"></ion-icon>
                         Watch Later
-                    </div>
+                    </Link>
                     <div className="nav-drawer-item d-flex flex-align-center">
                         <ion-icon name="thumbs-up-outline" size="large"></ion-icon>
                         Likes

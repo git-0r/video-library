@@ -10,3 +10,5 @@ export { Signup } from "./pages/Signup";
 export { Notification } from "./components/Notification";
 export { NotificationProvider, useNotification } from "./context/notificationContext";
 export { UserProvider, useUser } from "./context/userContext";
+export { WatchLater } from "./pages/WatchLater";
+export { WatchLaterContextProvider, useWatchLater } from "./context/watchLaterContext";
