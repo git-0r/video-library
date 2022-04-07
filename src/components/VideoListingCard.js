@@ -36,7 +36,7 @@ const VideoListingCard = ({ video }) => {
 
     return (
         <div className="video-container d-flex">
-            <Link to={`/video/${"id"}`} className="remove-link-style">
+            <Link to={`/video/${video._id}`} className="remove-link-style">
                 <div className="video-thumb-wrapper">
                     <img className="video-thumb" src={video?.image} alt="video-title" />
                     <div className="video-thumb-overlay d-flex flex-center" >

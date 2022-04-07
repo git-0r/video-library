@@ -56,7 +56,7 @@ const SignupForm = () => {
                 </div>
                 <button className="btn btn-primary">Register</button>
                 <div>
-                    <Link className="remove-link-style" to="/auth/login">Existing User? Log in</Link>
+                    <Link to="/auth/login">Existing User? Log in to your account.</Link>
                 </div>
             </form>
         </div>

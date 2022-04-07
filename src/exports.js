@@ -12,3 +12,5 @@ export { NotificationProvider, useNotification } from "./context/notificationCon
 export { UserProvider, useUser } from "./context/userContext";
 export { WatchLater } from "./pages/WatchLater";
 export { WatchLaterContextProvider, useWatchLater } from "./context/watchLaterContext";
+export { History } from "./pages/History";
+export { Video } from "./pages/Video";
