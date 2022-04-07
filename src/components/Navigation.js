@@ -1,11 +1,27 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { useNotification, useUser } from "../exports";
 
 const Navigation = () => {
 
     const [drawer, setDrawer] = useState(false);
+    const { user, setUser } = useUser();
+    const { notificationHandler } = useNotification();
+
 
     const toggleDrawer = () => setDrawer(state => !state);
+
+    const logout = () => {
+
+        try {
+
+            localStorage.clear();
+            setUser({ type: "LOGOUT" });
+            notificationHandler("Logged out!")
+        } catch (error) {
+            notificationHandler(error.message)
+        }
+    }
 
     return (
         <>
@@ -27,6 +43,11 @@ const Navigation = () => {
                     </form>
                 </div>
                 <div className="right-section d-flex flex-justify-evenly flex-align-center">
+                    {
+                        user
+                            ? <button className="btn btn-secondary" onClick={logout}>Logout</button>
+                            : <Link to="/auth/login" className="remove-link-style btn btn-primary">Login</Link>
+                    }
                     <ion-icon name="person-circle-outline"></ion-icon>
                     <ion-icon name="sunny"></ion-icon>
                 </div>

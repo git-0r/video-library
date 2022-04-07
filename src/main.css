@@ -6,6 +6,7 @@
 @import "./css/video-listing-card.css";
 @import "./css/footer.css";
 @import "./css/home.css";
+@import "./css/auth.css";
 
 :root {
     --clr-whitesmoke: rgb(245, 245, 245);
