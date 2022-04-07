@@ -54,7 +54,6 @@ const History = () => {
                     )
                     : <p className="heading-xl text-align-center">Login to your account.</p>
             }
-            <Footer />
         </>
     )
 }
