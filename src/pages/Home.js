@@ -5,8 +5,8 @@ import { Footer, Navigation, VideoListingCard } from "../exports";
 const Home = () => {
 
     const [videos, setVideos] = useState([]);
-    const [category, setCategory] = useState("");
-    const categories = ["All", "The witcher", "Hallo infinite", "Ghost runner", "Dying light", "God of war"];
+    const [category, setCategory] = useState("All");
+    const categories = ["All", "Hallo infinite", "Ghost runner", "The witcher", "Dying light", "God of war"];
 
     useEffect(() => {
 

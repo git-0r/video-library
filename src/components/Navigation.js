@@ -61,7 +61,7 @@ const Navigation = () => {
                         <ion-icon name="play-forward-outline" size="large"></ion-icon>
                         Playlists
                     </div>
-                    <Link to="/watchlater" className="nav-drawer-item remove-link-style d-flex flex-align-center">
+                    <Link to={`/watchlater/${user?._id}`} className="nav-drawer-item remove-link-style d-flex flex-align-center">
                         <ion-icon name="time-outline" size="large"></ion-icon>
                         Watch Later
                     </Link>
@@ -69,10 +69,10 @@ const Navigation = () => {
                         <ion-icon name="thumbs-up-outline" size="large"></ion-icon>
                         Likes
                     </div>
-                    <div className="nav-drawer-item d-flex flex-align-center">
+                    <Link to={`/history/${user?._id}`} className="nav-drawer-item d-flex flex-align-center remove-link-style">
                         <ion-icon name="hourglass-outline" size="large"></ion-icon>
                         History
-                    </div>
+                    </Link>
                 </div>
             }
         </>

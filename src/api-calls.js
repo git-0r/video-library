@@ -15,7 +15,7 @@ const getVideosByCategory = async (category) => {
 
     const cat = category.toLowerCase().split(" ").join("-");
 
-    const res = await axios.get(`${BASE_URL}/videos/${cat}`);
+    const res = await axios.get(`${BASE_URL}/videos/category/${cat}`);
     return res.data;
 }
 
@@ -77,6 +77,44 @@ const getWatchLaterVideos = async (user) => {
     return res.data;
 }
 
+const getVideoById = async (id) => {
+
+    const res = await axios.get(`${BASE_URL}/videos/${id}`);
+
+    return res.data
+}
+
+const addToHistory = async (id, user) => {
+
+    const res = await axios.put(`${BASE_URL}/history/add/${user._id}`,
+        { id },
+        {
+            headers: { token: `Bearer ${user.accessToken}` }
+        }
+    )
+}
+
+const getHistory = async (user) => {
+
+    const res = await axios.get(`${BASE_URL}/history/${user._id}`,
+        {
+            headers: { token: `Bearer ${user.accessToken}` }
+        }
+    );
+
+    return res.data;
+}
+
+const deleteHistory = async (user) => {
+    const res = await axios.delete(`${BASE_URL}/history/delete/${user._id}`,
+        {
+            headers: { token: `Bearer ${user.accessToken}` }
+        }
+    );
+
+    return res.data;
+}
+
 export {
     getAllVideos,
     getVideosByCategory,
@@ -84,5 +122,9 @@ export {
     register,
     addToWatchLater,
     removeFromWatchLater,
-    getWatchLaterVideos
+    getWatchLaterVideos,
+    getVideoById,
+    addToHistory,
+    getHistory,
+    deleteHistory
 }

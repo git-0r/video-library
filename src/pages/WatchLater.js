@@ -12,12 +12,9 @@ const WatchLater = () => {
     useEffect(() => {
 
         try {
-
             (
                 async () => {
-
                     if (user) {
-
                         const data = await getWatchLaterVideos(user);
                         setVideos(data.videos);
                     }

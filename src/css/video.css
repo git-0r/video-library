@@ -1,0 +1,19 @@
+.video-section {
+    width: 70vw;
+    margin: 2rem auto;
+}
+
+.video-section .video {
+    width: 100%;
+}
+
+.video-stats-container {
+    font-size: 1.2rem;
+}
+
+.video-views{
+    flex: 1;
+}
+.video-likes {
+    flex:1
+}
