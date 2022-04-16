@@ -26,6 +26,7 @@ const login = async (data) => {
 
     localStorage.setItem("user", JSON.stringify(user));
     localStorage.setItem("watchLater", JSON.stringify(user.watchLater));
+    localStorage.setItem("likes", JSON.stringify(user.likes));
 
     return user;
 }
@@ -86,12 +87,24 @@ const getVideoById = async (id) => {
 
 const addToHistory = async (id, user) => {
 
-    const res = await axios.put(`${BASE_URL}/history/add/${user._id}`,
+    await axios.put(`${BASE_URL}/history/add/${user._id}`,
         { id },
         {
             headers: { token: `Bearer ${user.accessToken}` }
         }
     )
+}
+
+const removeFromHistory = async (id, user) => {
+
+    const res = await axios.put(`${BASE_URL}/history/remove/${user._id}`,
+        { id },
+        {
+            headers: { token: `Bearer ${user.accessToken}` }
+        }
+    )
+
+    return res.data;
 }
 
 const getHistory = async (user) => {
@@ -115,6 +128,47 @@ const deleteHistory = async (user) => {
     return res.data;
 }
 
+const getLikes = async (user) => {
+
+    const res = await axios.get(`${BASE_URL}/likes/${user._id}`,
+        {
+            headers: { token: `Bearer ${user.accessToken}` }
+        }
+    )
+
+    return res.data;
+}
+
+const likeVideo = async (id, user) => {
+
+    const res = await axios.put(`${BASE_URL}/likes/add/${user._id}`,
+        { id },
+        {
+            headers: { token: `Bearer ${user.accessToken}` }
+        }
+    );
+
+    const likes = res.data;
+    localStorage.setItem("likes", JSON.stringify(likes))
+
+    return likes;
+}
+
+const dislikeVideo = async (id, user) => {
+
+    const res = await axios.put(`${BASE_URL}/likes/remove/${user._id}`,
+        { id },
+        {
+            headers: { token: `Bearer ${user.accessToken}` }
+        }
+    );
+
+    const likes = res.data;
+    localStorage.setItem("likes", JSON.stringify(likes))
+
+    return likes;
+}
+
 export {
     getAllVideos,
     getVideosByCategory,
@@ -125,6 +179,10 @@ export {
     getWatchLaterVideos,
     getVideoById,
     addToHistory,
+    removeFromHistory,
     getHistory,
-    deleteHistory
+    deleteHistory,
+    likeVideo,
+    dislikeVideo,
+    getLikes
 }

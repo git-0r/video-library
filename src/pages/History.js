@@ -1,12 +1,12 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { deleteHistory, getHistory } from "../api-calls";
-import { Footer, Navigation, useNotification, useUser, VideoListingCard } from "../exports";
+import { Navigation, useHistory, useNotification, useUser, VideoListingCard } from "../exports";
 
 const History = () => {
 
     const { user } = useUser();
-    const [history, setHistory] = useState();
     const { notificationHandler } = useNotification();
+    const { history, setHistory } = useHistory();
 
     useEffect(() => {
 
@@ -36,7 +36,7 @@ const History = () => {
             {
                 user
                     ? (
-                        <>
+                        <main>
                             <div className="d-flex flex-center flex-dir-column">
                                 <h1>History</h1>
                                 <button className="btn btn-secondary" disabled={!user} onClick={clearUserHistory}>Clear history</button>
@@ -50,7 +50,7 @@ const History = () => {
                                         </div>
                                 }
                             </div>
-                        </>
+                        </main>
                     )
                     : <p className="heading-xl text-align-center">Login to your account.</p>
             }

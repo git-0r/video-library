@@ -65,10 +65,10 @@ const Navigation = () => {
                         <ion-icon name="time-outline" size="large"></ion-icon>
                         Watch Later
                     </Link>
-                    <div className="nav-drawer-item d-flex flex-align-center">
+                    <Link to={`/likes/${user?._id}`} className="nav-drawer-item d-flex flex-align-center remove-link-style">
                         <ion-icon name="thumbs-up-outline" size="large"></ion-icon>
                         Likes
-                    </div>
+                    </Link>
                     <Link to={`/history/${user?._id}`} className="nav-drawer-item d-flex flex-align-center remove-link-style">
                         <ion-icon name="hourglass-outline" size="large"></ion-icon>
                         History

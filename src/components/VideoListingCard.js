@@ -1,7 +1,7 @@
-import { Link, useNavigate } from "react-router-dom"
+import { Link, useLocation, useNavigate } from "react-router-dom"
 import { useState } from "react"
-import { useNotification, useUser, useWatchLater } from "../exports";
-import { addToWatchLater, removeFromWatchLater } from "../api-calls";
+import { useHistory, useNotification, useUser, useWatchLater } from "../exports";
+import { addToWatchLater, removeFromHistory, removeFromWatchLater } from "../api-calls";
 
 const VideoListingCard = ({ video }) => {
 
@@ -10,6 +10,8 @@ const VideoListingCard = ({ video }) => {
     const navigate = useNavigate();
     const { notificationHandler } = useNotification();
     const { watchLater, updateWatchLater } = useWatchLater();
+    const { pathname } = useLocation();
+    const { setHistory } = useHistory();
 
     const toggleVideoOptions = () => setVideoOptions(state => !state);
 
@@ -28,6 +30,17 @@ const VideoListingCard = ({ video }) => {
             else {
                 navigate("/auth/login")
             }
+
+        } catch (error) {
+            notificationHandler(error.message);
+        }
+    }
+
+    const updateHistory = async () => {
+        const updatedHistory = await removeFromHistory(video._id, user);
+        setHistory(updatedHistory);
+        notificationHandler("Removed from history");
+        try {
 
         } catch (error) {
             notificationHandler(error.message);
@@ -62,6 +75,9 @@ const VideoListingCard = ({ video }) => {
                                 watchLater?.videos?.includes(video?._id)
                                     ? < li className="video-options-list-item" onClick={() => handleWatchLater("REMOVE")}>Remove from Watch later</li>
                                     : <li className="video-options-list-item" onClick={() => handleWatchLater("ADD")}>Watch later</li>
+                            }
+                            {
+                                pathname?.includes("history") && <li className="video-options-list-item" onClick={updateHistory}>Remove from history</li>
                             }
                         </ul>
                     }

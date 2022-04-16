@@ -3,6 +3,7 @@ import { useState } from "react";
 import { login } from "../api-calls";
 import { useUser } from "../context/userContext";
 import { useNotification, useWatchLater } from "../exports";
+// import { useLikes } from "../context/likesContext";
 
 
 const LoginForm = () => {
@@ -12,6 +13,7 @@ const LoginForm = () => {
     const navigate = useNavigate();
     const { notificationHandler } = useNotification();
     const { updateWatchLater } = useWatchLater();
+    // const { updateLikes} = useLikes();
 
     const handleFormInput = (e) => {
 
@@ -30,7 +32,7 @@ const LoginForm = () => {
         e.preventDefault();
 
         try {
-            const { watchLater, ...user } = await login(userInput);
+            const { watchLater, likes, ...user } = await login(userInput);
             setUser({ type: "LOGIN", payload: user });
             updateWatchLater(watchLater);
             notificationHandler("Logged in!");

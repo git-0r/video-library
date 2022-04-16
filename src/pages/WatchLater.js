@@ -4,7 +4,7 @@ import { Navigation, useNotification, useUser, useWatchLater, VideoListingCard }
 
 const WatchLater = () => {
 
-    const { watchLater, updateWatchLater } = useWatchLater();
+    const { watchLater } = useWatchLater();
     const [videos, setVideos] = useState([]);
     const { notificationHandler } = useNotification();
     const { user } = useUser();
@@ -33,7 +33,7 @@ const WatchLater = () => {
                 {
                     user
                         ? (
-                            <>
+                            <main>
                                 <h1 className="text-align-center">Watch Later</h1>
 
                                 <div className="video-list-wrapper d-flex flex-justify-evenly flex-wrap gap-1">
@@ -45,7 +45,7 @@ const WatchLater = () => {
                                             </div>
                                     }
                                 </div>
-                            </>
+                            </main>
                         )
                         : <p className="heading-xl text-align-center">Login to your account.</p>
                 }
