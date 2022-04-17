@@ -37,11 +37,11 @@ const VideoListingCard = ({ video }) => {
     }
 
     const updateHistory = async () => {
-        const updatedHistory = await removeFromHistory(video._id, user);
-        setHistory(updatedHistory);
-        notificationHandler("Removed from history");
-        try {
 
+        try {
+            const updatedHistory = await removeFromHistory(video._id, user);
+            setHistory(updatedHistory);
+            notificationHandler("Removed from history");
         } catch (error) {
             notificationHandler(error.message);
         }
