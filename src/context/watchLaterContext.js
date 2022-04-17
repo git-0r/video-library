@@ -3,7 +3,7 @@ import { useLocalStorage } from "../utils/localStorage";
 
 const watchLaterContext = createContext()
 
-const WatchLaterContextProvider = ({ children }) => {
+const WatchLaterProvider = ({ children }) => {
 
     const [watchLater, updateWatchLater] = useState(useLocalStorage("watchLater"));
     return (
@@ -15,4 +15,4 @@ const WatchLaterContextProvider = ({ children }) => {
 
 const useWatchLater = () => useContext(watchLaterContext);
 
-export { WatchLaterContextProvider, useWatchLater };
+export { WatchLaterProvider, useWatchLater };

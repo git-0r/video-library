@@ -30,7 +30,7 @@ const LoginForm = () => {
         e.preventDefault();
 
         try {
-            const { watchLater, ...user } = await login(userInput);
+            const { watchLater, likes, ...user } = await login(userInput);
             setUser({ type: "LOGIN", payload: user });
             updateWatchLater(watchLater);
             notificationHandler("Logged in!");

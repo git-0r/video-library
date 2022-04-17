@@ -15,5 +15,9 @@
     flex: 1;
 }
 .video-likes {
-    flex:1
+    flex:1;
+}
+
+.like-icon{
+    cursor: pointer;
 }
