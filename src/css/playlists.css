@@ -1,0 +1,19 @@
+.playlist-cover {
+    min-width: 10rem;
+    min-height: 10rem;
+    width: 15rem;
+    padding: 1rem;
+    cursor: pointer;
+    position: relative;
+    border: 1px solid var(--clr-primary-disabled);
+    background-color: var(--clr-whitesmoke);
+    border-radius: var(--border-radius-sm);
+}
+
+.playlist-cover > .card-dismiss {
+    display: none;
+}
+
+.playlist-cover:hover > .card-dismiss{
+    display: flex;
+}

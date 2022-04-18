@@ -17,3 +17,7 @@ export { Video } from "./pages/Video";
 export { Likes } from "./pages/Likes";
 export { LikesProvider } from "./context/likesContext";
 export { HistoryProvider, useHistory } from "./context/historyContext";
+export { PlaylistModal } from "./components/PlaylistModal";
+export { PlaylistProvider, usePlaylist } from "./context/playlistContext";
+export { Playlists } from "./pages/Playlists";
+export { Playlist } from "./pages/playlist";

@@ -68,3 +68,11 @@
     color: var(--clr-white-full);
     background-color: var(--clr-black-full);
 }
+
+.modal-content {
+    position: relative;
+}
+
+.card-dismiss > ion-icon{
+    font-size: 1.5rem;
+}

@@ -2,7 +2,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { login } from "../api-calls";
 import { useUser } from "../context/userContext";
-import { useNotification, useWatchLater } from "../exports";
+import { useNotification, usePlaylist, useWatchLater } from "../exports";
 
 
 const LoginForm = () => {
@@ -12,6 +12,7 @@ const LoginForm = () => {
     const navigate = useNavigate();
     const { notificationHandler } = useNotification();
     const { updateWatchLater } = useWatchLater();
+    const { updatePlaylists } = usePlaylist();
 
     const handleFormInput = (e) => {
 
@@ -30,9 +31,10 @@ const LoginForm = () => {
         e.preventDefault();
 
         try {
-            const { watchLater, likes, ...user } = await login(userInput);
+            const { watchLater, likes, playlists, ...user } = await login(userInput);
             setUser({ type: "LOGIN", payload: user });
             updateWatchLater(watchLater);
+            updatePlaylists(playlists);
             notificationHandler("Logged in!");
             navigate("/");
 
@@ -44,11 +46,13 @@ const LoginForm = () => {
     const guestLogin = async () => {
 
         try {
-            const { watchLater, ...user } = await login({ email: "test@email.com", password: "Test@123" });
+            const { watchLater, likes, playlists, ...user } = await login({ email: "test@email.com", password: "Test@123" });
             setUser({ type: "LOGIN", payload: user });
             updateWatchLater(watchLater);
+            updatePlaylists(playlists);
             notificationHandler("Logged in!");
             navigate("/");
+
         } catch (error) {
             notificationHandler(error.message)
         }
