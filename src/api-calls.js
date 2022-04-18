@@ -27,6 +27,7 @@ const login = async (data) => {
     localStorage.setItem("user", JSON.stringify(user));
     localStorage.setItem("watchLater", JSON.stringify(user.watchLater));
     localStorage.setItem("likes", JSON.stringify(user.likes));
+    localStorage.setItem("playlists", JSON.stringify(user.playlists));
 
     return user;
 }
@@ -169,6 +170,77 @@ const dislikeVideo = async (id, user) => {
     return likes;
 }
 
+const createNewPlaylist = async (title, user) => {
+
+    const res = await axios.put(`${BASE_URL}/playlist/create/${user?._id}`,
+        { title },
+        {
+            headers: { token: `Bearer ${user.accessToken}` }
+        }
+    )
+    const playlists = res.data;
+    localStorage.setItem("playlists", JSON.stringify(playlists));
+
+    return playlists;
+}
+
+const getPlaylist = async (playlistId) => {
+    const res = await axios.get(`${BASE_URL}/playlist/${playlistId}`)
+    return res.data;
+}
+
+const getAllPlaylists = async (user) => {
+    const res = await axios.get(`${BASE_URL}/playlist/all/${user?._id}`,
+        {
+            headers: { token: `Bearer ${user.accessToken}` }
+        }
+    )
+    const playlists = res.data;
+    localStorage.setItem("playlists", JSON.stringify(playlists));
+
+    return playlists;
+}
+
+const addVideoToPlaylist = async (playlistId, videoId, user) => {
+    const res = await axios.put(`${BASE_URL}/playlist/video/add/${user?._id}`,
+        { videoId, playlistId },
+        {
+            headers: { token: `Bearer ${user.accessToken}` }
+        }
+    )
+    const playlists = res.data;
+    localStorage.setItem("playlists", JSON.stringify(playlists));
+
+    return playlists;
+}
+
+const removeVideoFromPlaylist = async (playlistId, videoId, user) => {
+    const res = await axios.put(`${BASE_URL}/playlist/video/remove/${user?._id}`,
+        { videoId, playlistId },
+        {
+            headers: { token: `Bearer ${user.accessToken}` }
+        }
+    )
+    const playlists = res.data;
+    localStorage.setItem("playlists", JSON.stringify(playlists));
+
+    return playlists;
+}
+
+const deletePlaylist = async (playlistId, user) => {
+    const res = await axios.put(`${BASE_URL}/playlist/delete/${user?._id}`,
+        { playlistId },
+        {
+            headers: { token: `Bearer ${user.accessToken}` }
+        }
+    );
+
+    const playlists = res.data;
+    localStorage.setItem("playlists", JSON.stringify(playlists));
+
+    return playlists;
+}
+
 export {
     getAllVideos,
     getVideosByCategory,
@@ -184,5 +256,11 @@ export {
     deleteHistory,
     likeVideo,
     dislikeVideo,
-    getLikes
+    getLikes,
+    createNewPlaylist,
+    getAllPlaylists,
+    addVideoToPlaylist,
+    removeVideoFromPlaylist,
+    deletePlaylist,
+    getPlaylist
 }

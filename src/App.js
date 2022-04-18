@@ -7,6 +7,9 @@ import {
     Login,
     Notification,
     NotificationProvider,
+    Playlist,
+    PlaylistProvider,
+    Playlists,
     Signup,
     UserProvider,
     Video,
@@ -24,17 +27,21 @@ const App = () => {
                 <WatchLaterProvider>
                     <LikesProvider>
                         <HistoryProvider>
-                            <BrowserRouter>
-                                <Routes>
-                                    <Route path="/" element={<Home />} />
-                                    <Route path="/auth/login" element={<Login />} />
-                                    <Route path="/auth/register" element={<Signup />} />
-                                    <Route path="/watchlater/:id" element={<WatchLater />} />
-                                    <Route path="/video/:id" element={<Video />} />
-                                    <Route path="/history/:id" element={<History />} />
-                                    <Route path="/likes/:id" element={<Likes />} />
-                                </Routes>
-                            </BrowserRouter>
+                            <PlaylistProvider>
+                                <BrowserRouter>
+                                    <Routes>
+                                        <Route path="/" element={<Home />} />
+                                        <Route path="/auth/login" element={<Login />} />
+                                        <Route path="/auth/register" element={<Signup />} />
+                                        <Route path="/watchlater/:id" element={<WatchLater />} />
+                                        <Route path="/video/:id" element={<Video />} />
+                                        <Route path="/history/:id" element={<History />} />
+                                        <Route path="/likes/:id" element={<Likes />} />
+                                        <Route path="/playlists" element={<Playlists />} />
+                                        <Route path="/playlist/:id" element={<Playlist />} />
+                                    </Routes>
+                                </BrowserRouter>
+                            </PlaylistProvider>
                         </HistoryProvider>
                     </LikesProvider>
                 </WatchLaterProvider>

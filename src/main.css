@@ -8,6 +8,7 @@
 @import "./css/home.css";
 @import "./css/auth.css";
 @import "./css/video.css";
+@import "./css/playlists.css";
 
 :root {
     --clr-whitesmoke: rgb(245, 245, 245);
