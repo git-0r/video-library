@@ -46,9 +46,10 @@ const LoginForm = () => {
     const guestLogin = async () => {
 
         try {
-            const { watchLater, ...user } = await login({ email: "test@email.com", password: "Test@123" });
+            const { watchLater, likes, playlists, ...user } = await login({ email: "test@email.com", password: "Test@123" });
             setUser({ type: "LOGIN", payload: user });
             updateWatchLater(watchLater);
+            updatePlaylists(playlists);
             notificationHandler("Logged in!");
             navigate("/");
         } catch (error) {
