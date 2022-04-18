@@ -52,6 +52,7 @@ const LoginForm = () => {
             updatePlaylists(playlists);
             notificationHandler("Logged in!");
             navigate("/");
+
         } catch (error) {
             notificationHandler(error.message)
         }
